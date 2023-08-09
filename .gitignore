@@ -1,0 +1,29 @@
+# Byte-compiled  optimized  DLL files
+__pycache__
+.py[cod]
+$py.class
+
+# Caches
+.sqlite3
+db.sqlite3
+
+# Logs and debugging
+.log
+
+# Static files
+static
+assets
+
+# Media files
+media
+
+# Virtual environment
+venv
+.env
+
+# Compiled Python files
+.pyc
+
+# Dependency folders
+node_modules
+__pypackages__
