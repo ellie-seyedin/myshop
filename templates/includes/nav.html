@@ -1,5 +1,7 @@
+{% load static %}
+<!--***************** header *****************-->
 <header>
-    <img src="image/brand-logo.png" width="100" alt="my shop logo" style="display: inline;">
+    <img src={% static 'img/brand-logo.png' %} width="100" alt="my shop logo" style="display: inline;">
     <nav class="main-nav">
         <a href="{% url "home" %}">Home</a>
         <a href="shop">Shop</a>
