@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block description %}This is my description{% endblock %}
 {% block robots %}index, follow{% endblock %}
 {% block keywords %} modern black suits{% endblock %}
+{% block css  %}{% static "products/style.css" %}{% endblock %}
 {% block title %} My shop {% endblock%}
 
 
