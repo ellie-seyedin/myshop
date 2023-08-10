@@ -1,13 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyShop</title>
-</head>
-<body>
-    <h1>Welcome to my shop.</h1>
-    <h3>Welcome back, {{name}}</h3>
-    <p>You have <strong>{{number}}</strong> in your bucket. </p>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block description %}This is my description{% endblock %}
+{% block robots %}index, follow{% endblock %}
+{% block title %} My shop {% endblock%}
+{% block keywords %} modern black suits{% endblock %}
+
+
+{% block body %}
+<h1>Welcome to my shop.</h1>
+<h3>Welcome back, {{name| title }}</h3>
+<p>You have <strong>{{number}}</strong> in your bucket. </p>
+{% endblock %}

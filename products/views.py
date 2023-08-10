@@ -3,7 +3,7 @@ from django.http import HttpResponse
 
 
 def index(request):
-    user = "Elaheh"
+    user = "elaheh"
     product_number = 4
     return render(request, "products/home.html", {"name" : user, "number" : product_number})
 
