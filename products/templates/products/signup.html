@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block description %}You can create an account on myshop store.{% endblock %}
 {% block robots %}index, follow{% endblock %}
 {% block keywords %} signup, myshop{% endblock %}
+{% block css  %}{% static "products/signup.css" %}{% endblock %}
 {% block title %} Signup {% endblock%}
 
 
