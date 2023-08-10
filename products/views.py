@@ -3,7 +3,8 @@ from django.http import HttpResponse
 
 
 def index(request):
-    return HttpResponse("Welcome to my website!")
+    # return HttpResponse("Welcome to my website!")
+    return render(request, "products/home.html")
 
 def product_category(request, product):
      if product == "suits" or product == "dresses" or product == "shirts" or product == "shoes":
