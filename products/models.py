@@ -5,12 +5,9 @@ from django.db import models
 class Shirt(models.Model):
     title = models.CharField(max_length=70)
     price = models.PositiveIntegerField()
+    brand = models.CharField(max_length=50, null=True)
+    description = models.TextField(blank=True)
+    is_best_seller = models.BooleanField(default=False)
 
-# In your script or interactive shell with command: python3 manage.py shell  
-from products.models import Shirt 
-new_shirt = Shirt(1,"Long_sleeve shirt", 20) 
-new_shirt.save()
-
-# Or If I don't want to store in a variable
-from products.models import Shirt 
-Shirt(2,"Sport polo shirt", 35).save()
+    def __str__(self):
+      return f"{self.title}"
