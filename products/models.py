@@ -9,7 +9,13 @@ class Shirt(models.Model):
     description = models.TextField(blank=True)
     is_best_seller = models.BooleanField(default=False)
 
-    
+
+class Brand(models.Model):
+    title = models.CharField(max_length=70)
+    logo =models.ImageField()
+      
+    def __str__(self):
+      return f"{self.title}"
     
 class Product(models.Model): 
     title = models.CharField(max_length=40)
@@ -17,7 +23,7 @@ class Product(models.Model):
     category = models.CharField(max_length=50)
     image = models.ImageField(blank=True, upload_to="upload-img")
     price = models.PositiveIntegerField()
-    brand = models.CharField(max_length=50)
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE, null=True)
     slug = models.SlugField(blank=True)
     is_best_seller = models.BooleanField(default=False)
 

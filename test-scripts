@@ -24,3 +24,19 @@
 # from products.models import Shirt 
 # filter = Shirt.objects.filter(price=20)
 # print(filter)
+
+#Lookup gte:greater than or equal 
+#print(Shirt.objects.filter(price__gt=25)) 
+
+#OR conditions
+#from django.db.models import Q
+#list = Shirt.objects.filter(Q(is_best_seller=False) | Q(title__contains="polo"))
+#print(list)
+
+
+#AND condition
+# from products.models import Shirt 
+# shirt = Shirt.objects.filter(brand="Tom Ford", is_best_seller=True ) 
+# print(shirt)
+
+
