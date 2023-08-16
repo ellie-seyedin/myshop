@@ -1,15 +1,6 @@
 from django.db import models
 
 # Create your models here.
-
-class Shirt(models.Model):
-    title = models.CharField(max_length=70)
-    price = models.PositiveIntegerField()
-    brand = models.CharField(max_length=50, null=True)
-    description = models.TextField(blank=True)
-    is_best_seller = models.BooleanField(default=False)
-
-
 class Brand(models.Model):
     title = models.CharField(max_length=70)
     logo =models.ImageField()
@@ -17,13 +8,20 @@ class Brand(models.Model):
     def __str__(self):
       return f"{self.title}"
     
+class Shirt(models.Model):
+    title = models.CharField(max_length=70)
+    price = models.PositiveIntegerField()
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE, null=True)
+    description = models.TextField(blank=True)
+    is_best_seller = models.BooleanField(default=False)
+    
 class Product(models.Model): 
     title = models.CharField(max_length=40)
     description = models.TextField(blank=True)
     category = models.CharField(max_length=50)
     image = models.ImageField(blank=True, upload_to="upload-img")
     price = models.PositiveIntegerField()
-    brand = models.ForeignKey(Brand, on_delete=models.CASCADE, null=True)
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE, null=True, related_name="prd")
     slug = models.SlugField(blank=True)
     is_best_seller = models.BooleanField(default=False)
 

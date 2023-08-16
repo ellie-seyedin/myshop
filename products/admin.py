@@ -10,6 +10,6 @@ class productAdmin(admin.ModelAdmin):
     list_filter = ("is_best_seller",)
     search_fields = ("title", "category", "brand",)
 
-admin.site.register(Shirt)
 admin.site.register(Brand)
+admin.site.register(Shirt)
 admin.site.register(Product, productAdmin)

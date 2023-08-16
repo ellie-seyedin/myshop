@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Product
+from .models import Product, Brand
 
 
 def index(request):
@@ -8,6 +8,13 @@ def index(request):
     products = Product.objects.all().order_by('-id')[:4]
     product_number = 4
     product1= products[0]
+    #cross model query
+    suits =Product.objects.filter(brand__title = "Ella", brand__id=1)
+    print(suits)
+    brnd = Brand.objects.get(title="Ella")
+    suits = brnd.prd.all()
+    print(suits)
+
     return render(request, 
                   "products/home.html", {
                       "name" : user,
