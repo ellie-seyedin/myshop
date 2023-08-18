@@ -33,4 +33,7 @@ def signup(request):
     return render(request, "products/signup.html")
 
 def product_page(request, product_brand, product_slug):
-    return render(request, "products/product.html")
+    product = Product.objects.get(slug = product_slug)
+    return render(request, "products/product.html", {
+        "product":product
+    })
