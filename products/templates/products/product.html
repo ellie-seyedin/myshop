@@ -22,10 +22,11 @@
         </main>
         <section id="feedback">
             <h3>Customer's feedbacks:</h3>
-            <form>
-                <label>Name</label><br>
+            <form method="POST">
+                {% csrf_token %}
+                <label for="username">Name</label><br>
                 <input id="username" Name="username" type= "text"><br>
-                <button>Submit</button>
+                <button type="Submit">Submit</button>
             </form>
         </section> 
         </div>
