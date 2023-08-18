@@ -32,3 +32,5 @@ def product_category(request, product):
 def signup(request):
     return render(request, "products/signup.html")
 
+def product_page(request, product_brand, product_slug):
+    return render(request, "products/product.html")
