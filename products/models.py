@@ -34,6 +34,7 @@ class Product(models.Model):
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE, null=True, related_name="prd")
     slug = models.SlugField(blank=True)
     is_best_seller = models.BooleanField(default=False)
+    suggestion = models.ManyToManyField('self')
 
     def __str__(self):
       return f"{self.title}"
