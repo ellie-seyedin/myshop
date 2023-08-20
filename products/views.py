@@ -34,6 +34,14 @@ def signup(request):
 
 def product_page(request, product_brand, product_slug):
     product = Product.objects.get(slug = product_slug)
-    return render(request, "products/product.html", {
+
+    if request.method== "GET":
+        return render(request, "products/product.html", {
         "product":product
+    })
+    else:
+        result = request.POST["username"]
+        return render(request, "products/product.html", {
+        "product":product,
+        "result":result
     })
