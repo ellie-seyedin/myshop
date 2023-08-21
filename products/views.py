@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Product, Brand
+from .forms import FeedbackForm
 
 
 def index(request):
@@ -34,14 +35,19 @@ def signup(request):
 
 def product_page(request, product_brand, product_slug):
     product = Product.objects.get(slug = product_slug)
-
+    form = FeedbackForm()
     if request.method== "GET":
         return render(request, "products/product.html", {
-        "product":product
+        "product":product,
+        "form":form
     })
     else:
-        result = request.POST["username"]
+        form = FeedbackForm(request.POST)
+        if form.is_valid():
+            print(form.cleaned_data)
+        else:
+            print("The form isn't validated")    
         return render(request, "products/product.html", {
         "product":product,
-        "result":result
+        "form":form
     })
