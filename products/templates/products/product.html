@@ -22,6 +22,11 @@
         </main>
         <section id="feedback">
             <h3>Customer's feedbacks:</h3>
+            {% if messages %}
+                {% for message in messages %}
+                <p style="color:green">{{message}}</p>
+                {% endfor %}
+            {% endif %}
             <form method="POST">
                 {% csrf_token %}
                 

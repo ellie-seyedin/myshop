@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Product, Brand
 from .forms import FeedbackForm
+from django.contrib import messages
 
 
 def index(request):
@@ -45,8 +46,9 @@ def product_page(request, product_brand, product_slug):
         form = FeedbackForm(request.POST)
         if form.is_valid():
             print(form.cleaned_data)
-        else:
-            print("The form isn't validated")    
+            messages.success(request, "Your feedback was submitted successfully.")
+            form = FeedbackForm()
+
         return render(request, "products/product.html", {
         "product":product,
         "form":form
