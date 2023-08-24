@@ -34,7 +34,8 @@
                 {% for error in form.name.errors %}
                     <p style="color:red">{{error}}</p>
                 {% endfor %}
-                {{form.name}}<br>
+                {{form.name}}<br><br>
+                {{form.name.help_text}}<br><br>
 
                 {{form.email.label_tag}}<br>
                 {% for error in form.email.errors %}
