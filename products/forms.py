@@ -1,5 +1,6 @@
 from django import forms
 
 class FeedbackForm(forms.Form):
-    name = forms.CharField(required=True, max_length=10, label="Full Name", help_text="Enter your name:", error_messages={"required": "You forgot to add your name", "max_length":"It's too long, make it shorter"})
-    email = forms.EmailField(required=True)
+    name = forms.CharField(required=True, error_messages={"required": "You forgot to add your name"}, help_text="Add your name here.")
+    rating = forms.IntegerField(min_value=1, max_value=5)
+    text = forms.CharField(label="Your feedback", widget=forms.Textarea, max_length=200)

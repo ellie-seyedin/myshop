@@ -28,20 +28,35 @@
                 {% endfor %}
             {% endif %}
             <form method="POST">
-                {% csrf_token %}
+            {% csrf_token %}
+
+                {% for field in form %}
+                    {{field.label_tag}}<br>
+                    {{field}}<br>
+
+                    {% if field.help_text %}
+                        <p>{{field.help_text}}</p><br>
+                    {% endif %}
+
+                    {% for error in field.errors %}<br>
+                    <p style= "color:red">{{error}}</p><br>
+                    {% endfor %}<br>
+                {%endfor%}
+                <br>
                 
-                {{form.name.label_tag}}<br>
+                {% comment %} {{form.name.label_tag}}<br>
                 {% for error in form.name.errors %}
                     <p style="color:red">{{error}}</p>
                 {% endfor %}
                 {{form.name}}<br><br>
-                {{form.name.help_text}}<br><br>
+                {{form.name.help_text}}
 
-                {{form.email.label_tag}}<br>
-                {% for error in form.email.errors %}
+                {{form.rating.label_tag}}<br>
+                {% for error in form.rating.errors %}
                     <p style="color:red">{{error}}</p>
                 {% endfor %}
-                {{form.email}}<br>
+                {{form.rating}}<br> {% endcomment %}
+
                 <button type="Submit">Submit</button>
             </form>
         </section> 
