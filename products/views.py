@@ -37,10 +37,12 @@ def signup(request):
 def product_page(request, product_brand, product_slug):
     product = Product.objects.get(slug = product_slug)
     form = FeedbackForm()
+    reviews = Feedback.objects.filter(product = product)
     if request.method== "GET":
         return render(request, "products/product.html", {
         "product":product,
-        "form":form
+        "form":form, 
+        "reviews" : reviews,
     })
     else:
         form = FeedbackForm(request.POST)

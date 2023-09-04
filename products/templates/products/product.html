@@ -46,6 +46,19 @@
                 <button type="Submit">Submit</button>
             </form>
         </section> 
+        <section>
+            {% for review in reviews %}
+               <h4>{{review.name}} - {{review.rating}}</h4>
+                    {% if review.rating == 5 %} ⭐⭐⭐⭐⭐
+                    {% elif review.rating == 4 %} ⭐⭐⭐⭐
+                    {% elif review.rating == 3 %} ⭐⭐⭐
+                    {% elif review.rating == 2 %} ⭐⭐
+                    {% else %} ⭐
+                    {% endif %}
+               <p>{{review.text}}</p>
+               <br>
+            {% endfor %}
+        </section> 
         </div>
     </div>
 {% endblock %}
