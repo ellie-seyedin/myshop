@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Product, Brand
+from .models import Product, Brand, Feedback
 from .forms import FeedbackForm
 from django.contrib import messages
 
@@ -45,9 +45,14 @@ def product_page(request, product_brand, product_slug):
     else:
         form = FeedbackForm(request.POST)
         if form.is_valid():
-            print(form.cleaned_data)
+            feedback = Feedback(
+                name = form.cleaned_data["name"],
+                rating = form.cleaned_data["rating"],
+                product = product,
+                text = form.cleaned_data["text"]
+            )
+            feedback.save()
             messages.success(request, "Your feedback was submitted successfully.")
-            form = FeedbackForm()
 
         return render(request, "products/product.html", {
         "product":product,
