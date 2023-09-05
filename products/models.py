@@ -47,7 +47,7 @@ class Product(models.Model):
 class Feedback(models.Model):  
    name = models.CharField(max_length=40)
    rating = models.PositiveIntegerField()
-   product = models.ForeignKey(Product, on_delete=models.CASCADE)
+   product = models.ForeignKey(Product, on_delete= models.CASCADE)
    text = models.TextField()
    def __str__(self):
       return f"{self.product} - Rating {self.rating}"
