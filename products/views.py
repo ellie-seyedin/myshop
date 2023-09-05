@@ -3,27 +3,32 @@ from django.http import HttpResponse
 from .models import Product, Brand, Feedback
 from .forms import FeedbackForm
 from django.contrib import messages
+from django.views import View
 
-
-def index(request):
-    user = "elaheh"
-    products = Product.objects.all().order_by('-id')[:4]
-    product_number = 4
-    product1= products[0]
-    #cross model query
-    suits =Product.objects.filter(brand__title = "Ella", brand__id=1)
-    print(suits)
-    brnd = Brand.objects.get(title="Ella")
-    suits = brnd.prd.all()
-    print(suits)
-
-    return render(request, 
-                  "products/home.html", {
+class IndexView(View):
+    def get(self, request):
+        user = "elaheh"
+        product_number = 4
+        products = Product.objects.all().order_by('-id')[:4]
+        return render(request, 
+                   "products/home.html", {
                       "name" : user,
                       "number" : product_number,
                       "products" : products,
-                      "product1" : product1,
                       })
+    def post(self, request):
+     pass
+def index(request):
+          user = "elaheh"
+          product_number = 4
+          products = Product.objects.all().order_by('-id')[:4]
+          return render(request, 
+                   "products/home.html", {
+                      "name" : user,
+                      "number" : product_number,
+                      "products" : products,
+                      })
+    
 
 def product_category(request, product):
      if product == "suits" or product == "dresses" or product == "shirts" or product == "shoes":
@@ -34,26 +39,31 @@ def product_category(request, product):
 def signup(request):
     return render(request, "products/signup.html")
 
-def product_page(request, product_brand, product_slug):
-    product = Product.objects.get(slug = product_slug)
-    my_feedback = Feedback.objects.get(product = product)
-    form = FeedbackForm(instance = my_feedback)
-    reviews = Feedback.objects.filter(product = product)
-    if request.method== "GET":
-
-        return render(request, "products/product.html", {
-        "product":product,
-        "form":form, 
-        "reviews":reviews
+class ProductPageView(View):
+    def get(self, request, product_brand, product_slug):
+         product = Product.objects.get(slug = product_slug)
+         my_feedback = Feedback.objects.get(product = product)
+         form = FeedbackForm(instance = my_feedback)
+         reviews = Feedback.objects.filter(product = product)
+         return render(request, "products/product.html", {
+         "product":product,
+          "form":form, 
+          "reviews":reviews
     })
-    else:
-        form = FeedbackForm(request.POST, instance = my_feedback)
+
+    def post(self, request, product_brand, product_slug):
+        product = Product.objects.get(slug = product_slug)
+        my_feedback = Feedback.objects.get(product = product)
+        form = FeedbackForm(request.POST,instance = my_feedback)
+        reviews = Feedback.objects.filter(product = product)
         if form.is_valid():
             form.save()
             messages.success(request, "Your feedback was submitted successfully.")
 
         return render(request, "products/product.html", {
-        "product":product,
-        "form":form,
-        "reviews" : reviews,
+         "product":product,
+          "form":form, 
+          "reviews":reviews
     })
+
+   
