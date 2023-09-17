@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-&%tu!nr^xprh-_dqbpi1+qdxlvdav#byqe71d83!0m=gb@26t-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['django-myshop-env.eba-ra8bcnbk.eu-west-2.elasticbeanstalk.com','localhost']
+
 
 
 # Application definition
@@ -39,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -130,6 +132,26 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
-MEDIA_ROOT =  BASE_DIR / "upload"
+MEDIA_ROOT =  BASE_DIR / "uploads"
 
 MEDIA_URL = "/media/"
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AWS_STORAGE_BUCKET_NAME = "django-myshop-static-files"  #bucket name
+
+AWS_S3_REGION_NAME = "eu-west-2"
+
+AWS_ACCESS_KEY_ID = "AKIAXCZNJIWTMQ6GMOL5"
+
+AWS_SECRET_ACCESS_KEY = "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"
+
+STATICFILES_FOLDER = "static"
+MEDIAFILES_FOLDER = "media"
+
+AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
+
+STATICFILES_STORAGE = "custom_storages.StaticFileStorage"
+DEFAULT_FILE_STORAGE = "custom_storages.MediaFileStorage"  
+
+
