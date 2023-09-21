@@ -79,8 +79,12 @@ WSGI_APPLICATION = 'myshop.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'myshopdb',
+        'PASSWORD':'Ee123456',
+        'HOST': 'django-myshop.cavahryurnhr.eu-west-2.rds.amazonaws.com',
+        'PORT':'5432',
     }
 }
 

@@ -28,13 +28,13 @@ class Category(models.Model):
 class Product(models.Model): 
     title = models.CharField(max_length=40)
     description = models.TextField(blank=True)
-    category = models.ManyToManyField(Category)
+    category = models.ManyToManyField(Category, blank=True)
     image = models.ImageField(blank=True, upload_to="upload-img")
     price = models.PositiveIntegerField()
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE, null=True, related_name="prd")
     slug = models.SlugField(blank=True)
     is_best_seller = models.BooleanField(default=False)
-    suggestion = models.ManyToManyField('self')
+    suggestion = models.ManyToManyField('self', blank=True)
 
     def __str__(self):
       return f"{self.title}"

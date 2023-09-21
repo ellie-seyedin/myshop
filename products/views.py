@@ -42,8 +42,11 @@ def signup(request):
 class ProductPageView(View):
     def get(self, request, product_brand, product_slug):
          product = Product.objects.get(slug = product_slug)
-         my_feedback = Feedback.objects.get(product = product)
-         form = FeedbackForm(instance = my_feedback)
+         if Feedback.objects.filter(product=product, id=1).exists():   
+            my_feedback = Feedback.objects.get(product = product, id=1)
+            form = FeedbackForm(instance = my_feedback)
+         else:
+            form = FeedbackForm()    
          reviews = Feedback.objects.filter(product = product)
          return render(request, "products/product.html", {
          "product":product,
